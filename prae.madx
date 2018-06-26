@@ -5,16 +5,16 @@ option, warn, -info;
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - BioTherapy
 flag = 1;  
 
-call file = "opt_prae.madx";
+call file = "opt_prae_2.madx";
 
 PRAE_prorad: line = (
 D_linac_To_triplet, 
 Q_triplet_1st_1, D_triplet_1st_1, Q_triplet_1st_2, D_triplet_1st_2, Q_triplet_1st_3, // first triplet
-D_triplet_To_dogleg,
-S_kiker, D_kiker_To_triplet_2nd, // start dogleg 
-Q_triplet_2nd_1, D_triplet_2nd_1, Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3, //second triplet
+//D_triplet_To_dogleg,
+//D_kiker, D_kiker_To_triplet_2nd, // start dogleg 
+//Q_triplet_2nd_1, D_triplet_2nd_1, Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3, //second triplet
 D_triplet_2nd_To_chicane, 
-S_chicane_1, M_collimator,D_chicane_1, S_chicane_2,D_chicane_2, S_chicane_3, D_chicane_3, S_chicane_4, // end dogleg & magnetic chicane 
+S_chicane_1, D_chicane_1, S_chicane_2,M_collimator,D_chicane_2, S_chicane_3, D_chicane_3, S_chicane_4, // end dogleg & magnetic chicane 
 D_chicane_To_triplet_3rd,
 Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd_3,  // third triplet
 D_triplet_3rd_To_target
@@ -62,9 +62,9 @@ if ( 1 == flag) {
   vary, name = Q_triplet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_1st_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -76,6 +76,7 @@ if ( 1 == flag) {
   select, flag = twiss, clear = true;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full; 
+  //select, flag = twiss, column = s, name, RE56;
   twiss, save, file = "twiss_prae_prorad_madx.dat", 
     betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0, mux=mux0,muy=my0;
   plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_prorad";
@@ -97,7 +98,7 @@ if ( 1 == flag) {
 
   match, sequence = PRAE_instrument, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
   constraint, sequence = PRAE_instrument, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_instrument, range = #e, betx =1, bety = 2, dx=0, dpx=0;
+  constraint, sequence = PRAE_instrument, range = #e, betx =1, bety = 0.2, dx=0, dpx=0;
 
   vary, name = Q_triplet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
