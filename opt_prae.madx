@@ -1,0 +1,85 @@
+charge := 2.0e-9; // 2nC
+e0 := 0.07; // GeV
+emit_xy := 0.05e-6; // m.rad
+sigma_z := 3.0e-3; // m
+e_spread := 2.0e-3;
+N_electron := 1e3; 
+
+D_linac_To_triplet : drift, l = 2; // m
+
+D_triplet_1st_1 : drift, l = 0.2; // m
+D_triplet_1st_2 : drift, l = 0.2; // m
+
+D_triplet_To_dogleg : drift, l = 6.2 ; // m  KICKER NOT INCLUDED
+
+D_triplet_2nd_1 : drift, l = 1; // m
+D_triplet_2nd_2 : drift, l = 1; // m
+
+D_kiker_To_triplet_2nd : drift, l = 1.7; // m
+D_triplet_2nd_To_chicane : drift, l = 1.7; // m
+
+D_chicane_1 : drift, l = 1.5; // m
+D_chicane_2 : drift, l = 0.5; // m
+D_chicane_3 : drift, l = 1.5; // m
+
+D_chicane_To_triplet_3rd : drift, l = 2; // m
+
+D_triplet_2nd_1 : drift, l = 1; // m
+D_triplet_2nd_2 : drift, l = 1; // m
+
+D_triplet_3rd_1 : drift, l = 0.2; // m
+D_triplet_3rd_2 : drift, l = 0.2; // m
+
+D_triplet_3rd_To_target : drift, l = 2; // m
+
+D_kiker_To_triplet_4th : drift, l = 2.0; //m 
+D_triplet_4th_1 : drift, l = 1; // m
+D_triplet_4th_2 : drift, l = 1; // m
+
+D_triplet_4th_To_instrument : drift, l = 2.0; //m;
+
+
+Q_triplet_1st_1 : quadrupole, l = 0.15, k1 = -0.0482006;
+Q_triplet_1st_2 : quadrupole, l = 0.15, k1 = 9.8658;
+Q_triplet_1st_3 : quadrupole, l = 0.15, k1 = -9.71165;
+
+
+Q_triplet_2nd_1 : quadrupole, l = 0.15, k1 = -6.80024;
+Q_triplet_2nd_2 : quadrupole, l = 0.15, k1 = 17.6585;
+Q_triplet_2nd_3 : quadrupole, l = 0.15, k1 = -15.6694;
+
+
+Q_triplet_3rd_1 : quadrupole, l = 0.15, k1 = 8.90692;
+Q_triplet_3rd_2 : quadrupole, l = 0.15, k1 = -9.84361;
+Q_triplet_3rd_3 : quadrupole, l = 0.15, k1 = 6.13299;
+
+Q_triplet_4th_1 : quadrupole, l = 0.15, k1 = 8.90692;
+Q_triplet_4th_2 : quadrupole, l = 0.15, k1 = -9.84361;
+Q_triplet_4th_3 : quadrupole, l = 0.15, k1 = 6.13299;
+
+S_kiker : sbend, l = 0.2, angle = -0.52359877;
+D_kiker : drift, l = 0.2;
+S_chicane_1 : sbend, l = 0.2, angle = 0.52359877;
+S_chicane_2 : sbend, l = 0.2, angle = -0.52359877;
+S_chicane_3 : sbend, l = 0.2, angle = -0.52359877;
+S_chicane_4 : sbend, l = 0.2, angle = 0.52359877;
+
+
+M_collimator : marker;
+
+
+Q_triplet_1st_1->k1 =       -5.734056938 ;
+Q_triplet_1st_2->k1 =        8.261286358 ;
+Q_triplet_1st_3->k1 =        -2.72068801 ;
+Q_triplet_2nd_1->k1 =        11.47365367 ;
+Q_triplet_2nd_2->k1 =       -8.594261025 ;
+Q_triplet_2nd_3->k1 =        14.65830932 ;
+
+
+S_chicane_1->angle = 0.75 
+S_chicane_2->angle = -0.75;
+S_chicane_3->angle = -0.75;
+S_chicane_4->angle = 0.75;
+
+D_chicane_1->l = 1.6;
+D_chicane_3->l = 1.6;
