@@ -5,7 +5,7 @@ option, warn, -info;
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - BioTherapy
 flag = 3;  
 
-call file = "opt_prae_3.madx";
+call file = "opt_prae.madx";
 
 PRAE_prorad: line = (
 D_linac_to_doublet,
@@ -40,8 +40,7 @@ Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
 D_doublet_to_dogleg,
 S_kicker,
 D_kicker_To_triplet_2nd,
-//Q_triplet_2nd_2,
-Q_triplet_2nd_1, //D_triplet_2nd_1,Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3,  // second triplet
+Q_triplet_2nd_1, // second triplet
 D_triplet_2nd_To_kicker,
 S_kicker,
 D_kicker_To_triplet_3rd,
