@@ -1,8 +1,8 @@
 #!/bin/bash
 
-madx < prae_3.madx > madx_run.log 
+madx < prae.madx > madx_run.log 
 
-flag=3
+flag=1
 
 if [ $flag -eq 1 ]; then
   line="prorad"
