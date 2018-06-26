@@ -3,45 +3,53 @@ title "PARE";
 option, warn, -info;
 
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - BioTherapy
-flag = 1;  
+flag = 3;  
 
-call file = "opt_prae_2.madx";
+call file = "opt_prae_3.madx";
 
 PRAE_prorad: line = (
-D_linac_To_triplet, 
-Q_triplet_1st_1, D_triplet_1st_1, Q_triplet_1st_2, D_triplet_1st_2, Q_triplet_1st_3, // first triplet
-//D_triplet_To_dogleg,
-//D_kiker, D_kiker_To_triplet_2nd, // start dogleg 
-//Q_triplet_2nd_1, D_triplet_2nd_1, Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3, //second triplet
-D_triplet_2nd_To_chicane, 
-S_chicane_1, D_chicane_1, S_chicane_2,M_collimator,D_chicane_2, S_chicane_3, D_chicane_3, S_chicane_4, // end dogleg & magnetic chicane 
-D_chicane_To_triplet_3rd,
-Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd_3,  // third triplet
-D_triplet_3rd_To_target
+D_linac_to_doublet,
+Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_to_dogleg,
+D_kicker,
+D_kicker_To_chicane,
+S_chicane_1, D_chicane_1, S_chicane_2,M_collimator,D_chicane_2, S_chicane_3, D_chicane_3, S_chicane_4,
+D_chicane_To_triplet_4th,
+Q_triplet_4th_1, D_triplet_4th_1,Q_triplet_4th_2, D_triplet_4th_2, Q_triplet_4th_3,  // third triplet
+D_triplet_4th_To_target
 );
 
 
 PRAE_instrument: line = (
-D_linac_to_triplet,
-Q_triplet_1st_1, D_triplet_1st_1, Q_triplet_1st_2, D_triplet_1st_2, Q_triplet_1st_3, // first triplet
-D_triplet_to_dogleg,
-D_kiker,
-D_kiker_To_triplet_4th,
-Q_triplet_4th_1, D_triplet_4th_1,Q_triplet_4th_2, D_triplet_4th_2, Q_triplet_4th_3,  // fourth triplet
-D_triplet_4th_To_instrument
+D_linac_to_doublet,
+Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_to_dogleg,
+S_kicker,
+D_kicker_To_triplet_2nd,
+Q_triplet_2nd_1, D_triplet_2nd_1,Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3,  // second triplet
+D_triplet_2nd_To_kicker,
+S_kicker,
+D_kicker_To_triplet_3rd,
+Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd_3,  // third triplet
+D_triplet_3rd_To_target
 );
 
 PRAE_therapy: line = (
-D_linac_to_triplet,
-Q_triplet_1st_1, D_triplet_1st_1, Q_triplet_1st_2, D_triplet_1st_2, Q_triplet_1st_3, // first triplet
-D_triplet_to_dogleg,
-S_kiker,
-D_kiker_To_triplet_4th,
-Q_triplet_4th_1, D_triplet_4th_1,Q_triplet_4th_2, D_triplet_4th_2, Q_triplet_4th_3,  // fourth triplet
-D_triplet_4th_To_instrument
+D_linac_to_doublet,
+Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_to_dogleg,
+S_kicker,
+D_kicker_To_triplet_2nd,
+//Q_triplet_2nd_2,
+Q_triplet_2nd_1, //D_triplet_2nd_1,Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3,  // second triplet
+D_triplet_2nd_To_kicker,
+S_kicker,
+D_kicker_To_triplet_3rd,
+Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd_3,  // third triplet
+D_triplet_3rd_To_target
 );
 
-beam, particle = electron, energy = e0, ex = emit_xy, ey = emit_xy, sigt = sigma_z, npart = N_electron; 
+Beam, particle = electron, energy = e0, ex = emit_xy, ey = emit_xy, sigt = sigma_z, npart = N_electron; 
 
 if ( 1 == flag) {
 
@@ -137,14 +145,14 @@ if ( 1 == flag) {
 
   match, sequence = PRAE_therapy, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
   constraint, sequence = PRAE_therapy, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_therapy, range = #e, betx =1, bety = 0.2, dx=0, dpx=0;
+  constraint, sequence = PRAE_therapy, range = #e, betx =1, bety = 1, dx=0, dpx=0;
+  //constraint, sequence = PRAE_therapy, range = #e, dx=0, dpx=0;
 
-  vary, name = Q_triplet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_1st_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  ////vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  ////vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -159,6 +167,8 @@ if ( 1 == flag) {
   twiss, save, file = "twiss_prae_therapy_madx.dat",
     betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0, mux=mux0,muy=my0;
   plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_therapy";
+
+  value, Q_doublet_1st_1->k1,Q_doublet_1st_2->k1,Q_triplet_2nd_1->k1;
 
 
   survey,file=survey_therapy.out;
