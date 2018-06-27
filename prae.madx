@@ -3,7 +3,7 @@ title "PARE";
 option, warn, -info;
 
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - BioTherapy
-flag = 3;  
+flag = 1;  
 
 call file = "opt_prae.madx";
 
@@ -26,7 +26,7 @@ Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
 D_doublet_to_dogleg,
 S_kicker,
 D_kicker_To_triplet_2nd,
-Q_triplet_2nd_1, D_triplet_2nd_1,Q_triplet_2nd_2, D_triplet_2nd_2, Q_triplet_2nd_3,  // second triplet
+Q_triplet_2nd_1, // second triplet
 D_triplet_2nd_To_kicker,
 S_kicker,
 D_kicker_To_triplet_3rd,
@@ -66,15 +66,11 @@ if ( 1 == flag) {
   constraint, sequence = PRAE_prorad, range = #s/#e, betx < 100, bety < 100;
   constraint, sequence = PRAE_prorad, range = #e, betx =1, bety = 0.2, dx=0, dpx=0;
 
-  vary, name = Q_triplet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_1st_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_triplet_4th_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_triplet_4th_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_triplet_4th_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
 
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;

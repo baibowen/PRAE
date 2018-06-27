@@ -33,12 +33,7 @@ Octave {
   save -text beam_prae_0.dat B;
 
 
-END = placet_get_name_number_list("prae","D_TRIPLET_2ND_TO_CHICANE");
-
-  [E,B] = placet_test_no_correction("prae", "beam1", "None",1,0,END);
-  save -text beam_prae_1.dat B;
-
   [E,B] = placet_test_no_correction("prae", "beam1", "None");
-  save -text emit-prae.dat E;
+  save -text emit_prae.dat E;
   save -text beam_prae.dat B;
 }
