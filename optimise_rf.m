@@ -28,7 +28,8 @@ R_65 = 1./R_56
 
 X = randn(1,1);
 
-[R, fval] = fminsearch("optimise_espread",X)
+#[R, fval] = fminsearch("optimise_espread",X)
+fval = std(C(:,1));
 
 disp(["The optimsed energy spread is " num2str(fval)]);
 

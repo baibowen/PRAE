@@ -78,7 +78,7 @@ Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
-angle_chicane = 30 * RADDEG;
+angle_chicane = 80 * RADDEG;
 l_chicane = 1.2;
 
 D_chicane_1->l = 2.0;
