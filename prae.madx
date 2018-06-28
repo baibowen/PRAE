@@ -66,8 +66,8 @@ if ( 1 == flag) {
   constraint, sequence = PRAE_prorad, range = #s/#e, betx < 100, bety < 100;
   constraint, sequence = PRAE_prorad, range = #e, betx =1, bety = 0.2, dx=0, dpx=0;
 
-  //vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;

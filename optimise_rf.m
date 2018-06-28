@@ -35,3 +35,5 @@ disp(["The optimsed energy spread is " num2str(fval)]);
 disp(["The beamsize before the collimator is " num2str(std(B0(:,2)))]);
 
 disp(["The number of paritcles after collimater is " num2str(sum(mask_colli))]);
+
+system(['echo 10 ' num2str(R_56) ' 1 ' num2str(fval*1.0e4) ' ' num2str(sum(mask_colli)/1.0e2) ' >> result.txt']);

@@ -36,48 +36,50 @@ D_triplet_4th_2 : drift, l = 0.2; // m
 
 D_triplet_4th_To_target : drift, l = 2.0; //m;
 
+l_quad = 0.2; // m
 
-Q_doublet_1st_1 : quadrupole, l = 0.2, k1 = -0.0482006;
-Q_doublet_1st_2 : quadrupole, l = 0.2, k1 = 9.8658;
-Q_doublet_1st_3 : quadrupole, l = 0.2, k1 = -9.71165;
-
-
-Q_triplet_2nd_1 : quadrupole, l = 0.2, k1 = 6.80024;
-Q_triplet_2nd_2 : quadrupole, l = 0.2, k1 = 17.6585;
-Q_triplet_2nd_3 : quadrupole, l = 0.2, k1 = -15.6694;
+Q_doublet_1st_1 : quadrupole, l = l_quad, k1 = -0.0482006;
+Q_doublet_1st_2 : quadrupole, l = l_quad, k1 = 9.8658;
+Q_doublet_1st_3 : quadrupole, l = l_quad, k1 = -9.71165;
 
 
-Q_triplet_3rd_1 : quadrupole, l = 0.2, k1 = 8.90692;
-Q_triplet_3rd_2 : quadrupole, l = 0.2, k1 = -9.84361;
-Q_triplet_3rd_3 : quadrupole, l = 0.2, k1 = 6.13299;
+Q_triplet_2nd_1 : quadrupole, l = l_quad, k1 = 6.80024;
+Q_triplet_2nd_2 : quadrupole, l = l_quad, k1 = 17.6585;
+Q_triplet_2nd_3 : quadrupole, l = l_quad, k1 = -15.6694;
 
-Q_triplet_4th_1 : quadrupole, l = 0.2, k1 = 8.90692;
-Q_triplet_4th_2 : quadrupole, l = 0.2, k1 = -9.84361;
-Q_triplet_4th_3 : quadrupole, l = 0.2, k1 = 6.13299;
+
+Q_triplet_3rd_1 : quadrupole, l = l_quad, k1 = 8.90692;
+Q_triplet_3rd_2 : quadrupole, l = l_quad, k1 = -9.84361;
+Q_triplet_3rd_3 : quadrupole, l = l_quad, k1 = 6.13299;
+
+Q_triplet_4th_1 : quadrupole, l = l_quad, k1 = 8.90692;
+Q_triplet_4th_2 : quadrupole, l = l_quad, k1 = -9.84361;
+Q_triplet_4th_3 : quadrupole, l = l_quad, k1 = 6.13299;
 
 S_kicker : sbend, l = 0.2, angle = 14.0*RADDEG;;
 D_kicker : drift, l = 0.2;
-S_chicane_1 : rbend, l = 1.2, angle = 0.52359877;
-S_chicane_2 : rbend, l = 1.2, angle = -0.52359877;
-S_chicane_3 : rbend, l = 1.2, angle = -0.52359877;
-S_chicane_4 : rbend, l = 1.2, angle = 0.52359877;
+
+angle_chicane = PI/6.0;
+l_chicane = 1.2;
+
+//S_chicane_1 : rbend, l = 1.2, angle = 0.52359877;
+//S_chicane_2 : rbend, l = 1.2, angle = -0.52359877;
+//S_chicane_3 : rbend, l = 1.2, angle = -0.52359877;
+//S_chicane_4 : rbend, l = 1.2, angle = 0.52359877;
+S_chicane_1 : sbend, l := l_chicane, angle :=  angle_chicane, e1 = 0, e2 := angle_chicane;
+S_chicane_2 : sbend, l := l_chicane, angle := -angle_chicane, e1 := -angle_chicane, e2 = 0;;
+S_chicane_3 : sbend, l := l_chicane, angle := -angle_chicane, e1 = 0, e2 := -angle_chicane;
+S_chicane_4 : sbend, l := l_chicane, angle :=  angle_chicane, e1 := angle_chicane, e2 = 0;
 
 
 M_collimator : marker;
 
-
-Q_triplet_1st_1->k1 =       -5.734056938 ;
-Q_triplet_1st_2->k1 =        8.261286358 ;
-Q_triplet_1st_3->k1 =        -2.72068801 ;
 Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
-
-//S_chicane_1->angle = 0.5*2 
-//S_chicane_2->angle = -0.5*2;
-//S_chicane_3->angle = -0.5*2;
-//S_chicane_4->angle = 0.5*2;
+angle_chicane = 30 * RADDEG;
+l_chicane = 1.2;
 
 D_chicane_1->l = 2.0;
 D_chicane_3->l = 2.0;
