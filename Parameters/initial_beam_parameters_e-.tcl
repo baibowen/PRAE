@@ -18,7 +18,7 @@ set beam0010(betax)    35.0
 set beam0010(alphax)    -4.24
 set beam0010(emitnx)    [expr 5.0e-8*137]
 set beam0010(betay)     35.0
-set beam0010(alphay)    -4.24
+set beam0010(alphay)    -4.34
 set beam0010(emitny)    [expr 5.0e-8*137]
 set beam0010(sigmaz)    3.0e-3
 set beam0010(meanz)     0.0e-6

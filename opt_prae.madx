@@ -1,9 +1,12 @@
 charge := 2.0e-9; // 2nC
-e0 := 0.07; // GeV
+e0 := 0.070; // GeV
 emit_xy := 0.05e-6; // m.rad
 sigma_z := 3.0e-3; // m
 e_spread := 2.0e-3;
 N_electron := 1e3; 
+
+//sigma_z := 1.07e-3; // m
+//e_spread := 2.84e-3;
 
 D_linac_To_doublet : drift, l = 1; // m
 
@@ -78,7 +81,7 @@ Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
-angle_chicane = 80 * RADDEG;
+angle_chicane = 45 * RADDEG;
 l_chicane = 1.2;
 
 D_chicane_1->l = 2.0;

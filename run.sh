@@ -1,6 +1,6 @@
 #!/bin/bash
 
-flag=1
+flag=3
 
 madx < prae.madx > madx_run.log 
 
@@ -9,7 +9,7 @@ if [ $flag -eq 1 ]; then
 elif [ $flag -eq 2 ]; then
   line="instrument"
 else
-  line="therapy"
+  line="radiobiology"
 fi
 
 ps2pdf twiss_prae_${line}.ps
@@ -20,7 +20,7 @@ if [ $flag -eq 1 ]; then
   gsed -i "/M_COLLIMATOR/a\source collimator.tcl" lattice_prae_${line}_placet.tcl
 fi
 
-#placet -s main_${line}.tcl
+placet -s main_${line}.tcl
 #
 #if [ $flag -eq 1 ]; then
 #  ./optimise_rf.m 

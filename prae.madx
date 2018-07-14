@@ -2,8 +2,8 @@ title "PARE";
 
 option, warn, -info;
 
-// 1 - ProRad; 2 - Instrumentation; 3 (other) - BioTherapy
-flag = 1;  
+// 1 - ProRad; 2 - Instrumentation; 3 (other) - RadioBiology 
+flag = 3;  
 
 call file = "opt_prae.madx";
 
@@ -34,7 +34,7 @@ Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd
 D_triplet_3rd_To_target
 );
 
-PRAE_therapy: line = (
+PRAE_radiobiology: line = (
 D_linac_to_doublet,
 Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
 D_doublet_to_dogleg,
@@ -54,10 +54,14 @@ if ( 1 == flag) {
 
   use, sequence = PRAE_prorad;
 
-  betx0 = 35;
-  bety0 = 35;
-  alfx0 = -4.24;
-  alfy0 = -4.34;
+  //betx0 = 35;
+  //bety0 = 35;
+  //alfx0 = -4.24;
+  //alfy0 = -4.34;
+  betx0 = 10.777;
+  bety0 = 10.156;
+  alfx0 = -2.0979;
+  alfy0 = -1.8762;
 
   select, flag = twiss, column = name, s, betx, bety, alfx, alfy,mux,muy dx, dpx;
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
@@ -89,10 +93,14 @@ if ( 1 == flag) {
 
 } elseif ( 2 == flag) {
   use, sequence = PRAE_instrument;
-  betx0 = 35;
-  bety0 = 35;
-  alfx0 = -4.24;
-  alfy0 = -4.34;
+  //betx0 = 35;
+  //bety0 = 35;
+  //alfx0 = -4.24;
+  //alfy0 = -4.34;
+  betx0 = 10.777;
+  bety0 = 10.156;
+  alfx0 = -2.0979;
+  alfy0 = -1.8762;
 
   //S_kiker->angle = 0; // switch off the sbend
 
@@ -128,44 +136,52 @@ if ( 1 == flag) {
 
 } else {
 
-  use, sequence = PRAE_therapy;
+  use, sequence = PRAE_radiobiology;
 
-    betx0 = 35;
-  bety0 = 35;
-  alfx0 = -4.24;
-  alfy0 = -4.34;
+  //betx0 = 35;   // previous
+  //bety0 = 35;
+  //alfx0 = -4.24;
+  //alfy0 = -4.34;
+  betx0 = 8.7976;  // RF crest
+  bety0 = 8.3025;
+  alfx0 = -9.9591e-01;
+  alfy0 = -8.4441e-01;
+  //betx0 = 1.0347e+01;  // RF crest
+  //bety0 = 1.0065e+01;
+  //alfx0 = -1.5892;
+  //alfy0 = -1.4990;
 
   select, flag = twiss, column = name, s, betx, bety, alfx, alfy,mux,muy dx, dpx;
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
 
-  match, sequence = PRAE_therapy, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
-  constraint, sequence = PRAE_therapy, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_therapy, range = #e, betx =1, bety = 1, dx=0, dpx=0;
-  //constraint, sequence = PRAE_therapy, range = #e, dx=0, dpx=0;
+  match, sequence = PRAE_radiobiology, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
+  constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 100, bety < 100;
+  constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx=0, dpx=0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, dx=0, dpx=0;
 
   //vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   //vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  ////vary, name = Q_triplet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  ////vary, name = Q_triplet_2nd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
 
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;
-
-
+  value, Q_triplet_2nd_1->k1;
+  value, Q_triplet_3rd_1->k1;
+  value, Q_triplet_3rd_2->k1;
+  value, Q_triplet_3rd_3->k1;
   select, flag = twiss, clear = true;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full;
-  twiss, save, file = "twiss_prae_therapy_madx.dat",
+  twiss, save, file = "twiss_prae_radiobiology_madx.dat",
     betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0, mux=mux0,muy=my0;
-  plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_therapy";
+  plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_radiobiology";
 
   value, Q_doublet_1st_1->k1,Q_doublet_1st_2->k1,Q_triplet_2nd_1->k1;
 
 
-  survey,file=survey_therapy.out;
+  survey,file=survey_radiobiology.out;
 
 } 

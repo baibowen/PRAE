@@ -63,7 +63,7 @@ while ($lines = <FILE>) {
       print "set END \"END\"\n";
       print "\n";
 
-      print "set sbend_synrad 0\n";
+      print "set sbend_synrad 1\n";
       print "set quad_synrad 0\n";
       print "set mult_synrad 0\n";
       print "\n";
