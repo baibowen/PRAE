@@ -1,0 +1,10 @@
+*.pdf
+*.ps
+*.eps
+*.dat
+*.bak
+*.dat.*
+*.out
+*.txt
+*.in
+*.log
