@@ -1,5 +1,7 @@
 charge := 2.0e-9; // 2nC
 e0 := 0.070; // GeV
+//e0 := 7.0143e-2; // GeV, 0.5sigma for prorad
+//e0 := 7.0298e-2; // GeV, max E for prorad
 emit_xy := 0.05e-6; // m.rad
 sigma_z := 3.0e-3; // m
 e_spread := 2.0e-3;
@@ -81,7 +83,7 @@ Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
-angle_chicane = 45 * RADDEG;
+angle_chicane = 55 * RADDEG;
 l_chicane = 1.2;
 
 D_chicane_1->l = 2.0;
@@ -90,3 +92,13 @@ D_chicane_3->l = 2.0;
 q_doublet_1st_1->k1 = 2.70050;
 q_doublet_1st_2->k1 = -3.16456;
 q_triplet_2nd_1->k1 = 5.45269;
+
+//length_tri = 3.7
+//D_kicker_To_triplet_2nd->l = length_tri;
+//D_triplet_2nd_To_kicker->l = length_tri;
+//D_triplet_3rd_To_target->l = 2.5;
+
+//length_tri = 0.2;
+
+//D_triplet_3rd_1->l = length_tri;
+//D_triplet_3rd_1->l = length_tri;

@@ -57,6 +57,8 @@ Octave {
 
   disp(["The x beam size is " num2str(std(B)(:,2)) " um"]);
   disp(["The y beam size is " num2str(std(B)(:,3)) " um"]);
+  disp(["The xp is " num2str(std(B)(:,5)) " urad"]);
+  disp(["The yp is " num2str(std(B)(:,6)) " urad"]);
   disp(["The energy spread is " num2str(std(B)(:,1)/mean(B(:,1)))]);
 
   beta_f_x = 6.7; ## meter

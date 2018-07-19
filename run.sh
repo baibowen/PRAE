@@ -21,7 +21,12 @@ if [ $flag -eq 1 ]; then
 fi
 
 placet -s main_${line}.tcl
+
 #
 #if [ $flag -eq 1 ]; then
 #  ./optimise_rf.m 
 #fi
+
+#root -q "read_survey.C(\"${line}\")"
+
+#gnuplot plot_survey.gnu

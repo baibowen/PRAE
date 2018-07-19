@@ -58,17 +58,17 @@ if ( 1 == flag) {
   //bety0 = 35;
   //alfx0 = -4.24;
   //alfy0 = -4.34;
-  betx0 = 10.777;
-  bety0 = 10.156;
-  alfx0 = -2.0979;
-  alfy0 = -1.8762;
+  betx0 = 8.7976;  // RF crest
+  bety0 = 8.3025;
+  alfx0 = -9.9591e-01;
+  alfy0 = -8.4441e-01;
 
   select, flag = twiss, column = name, s, betx, bety, alfx, alfy,mux,muy dx, dpx;
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
 
   match, sequence = PRAE_prorad, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
   constraint, sequence = PRAE_prorad, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_prorad, range = #e, betx =1, bety = 0.2, dx=0, dpx=0;
+  constraint, sequence = PRAE_prorad, range = #e, betx =5, bety = 5, dx=0, dpx=0;
 
   vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -79,7 +79,11 @@ if ( 1 == flag) {
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;
 
-
+  value, Q_doublet_1st_1->k1;
+  value, Q_doublet_1st_2->k1;
+  value, Q_triplet_4th_1->k1;
+  value, Q_triplet_4th_2->k1;
+  value, Q_triplet_4th_3->k1;
   select, flag = twiss, clear = true;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full; 
@@ -89,7 +93,8 @@ if ( 1 == flag) {
   plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_prorad";
 
 
-  survey,file=survey_prorad.out;
+  select, flag = survey, column = name,s,x,y,z;
+  survey,file=survey_prorad_madx.dat;
 
 } elseif ( 2 == flag) {
   use, sequence = PRAE_instrument;
@@ -130,7 +135,8 @@ if ( 1 == flag) {
   plot, haxis = s, vaxis1 = betx, bety, vaxis2 = dx, colour = 100, file = "twiss_prae_instrment";
 
 
-  survey,file=survey_instrument.out;
+  select, flag = survey, column = name,s,x,y,z;
+  survey,file=survey_instrument_madx.dat;
                                      
 
 
@@ -146,25 +152,23 @@ if ( 1 == flag) {
   bety0 = 8.3025;
   alfx0 = -9.9591e-01;
   alfy0 = -8.4441e-01;
-  //betx0 = 1.0347e+01;  // RF crest
-  //bety0 = 1.0065e+01;
-  //alfx0 = -1.5892;
-  //alfy0 = -1.4990;
 
   select, flag = twiss, column = name, s, betx, bety, alfx, alfy,mux,muy dx, dpx;
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
 
   match, sequence = PRAE_radiobiology, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
-  constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx=0, dpx=0;
+  constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 40, bety < 40;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx = 0, dpx = 0;
+  constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx = 0, dpx = 0, alfx =0, alfy = 0;
   //constraint, sequence = PRAE_radiobiology, range = #e, dx=0, dpx=0;
 
-  //vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  //vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = D_triplet_3rd_To_target->l, step = 1e-3, lower = 0.1, upper = 5.0;
 
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;
@@ -173,6 +177,7 @@ if ( 1 == flag) {
   value, Q_triplet_3rd_2->k1;
   value, Q_triplet_3rd_3->k1;
   select, flag = twiss, clear = true;
+  //twiss, save, file = "twiss_prae_radiobiology.tfs", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full;
   twiss, save, file = "twiss_prae_radiobiology_madx.dat",
@@ -181,7 +186,7 @@ if ( 1 == flag) {
 
   value, Q_doublet_1st_1->k1,Q_doublet_1st_2->k1,Q_triplet_2nd_1->k1;
 
-
-  survey,file=survey_radiobiology.out;
+  select, flag = survey, column = name,s,x,y,z;
+  survey,file=survey_radiobiology_madx.dat;
 
 } 
