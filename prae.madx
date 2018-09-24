@@ -42,7 +42,7 @@ S_kicker,
 D_kicker_To_triplet_2nd,
 Q_triplet_2nd_1, // second triplet
 D_triplet_2nd_To_kicker,
-S_kicker,
+S_kicker_2,
 D_kicker_To_triplet_3rd,
 Q_triplet_3rd_1, D_triplet_3rd_1,Q_triplet_3rd_2, D_triplet_3rd_2, Q_triplet_3rd_3,  // third triplet
 D_triplet_3rd_To_target
@@ -62,13 +62,22 @@ if ( 1 == flag) {
   bety0 = 8.3025;
   alfx0 = -9.9591e-01;
   alfy0 = -8.4441e-01;
+  //betx0 = 1.0347e+01;  // RF right 
+  //bety0 = 1.0065e+01;
+  //alfx0 = -1.5892;
+  //alfy0 = -1.4990;
+  //betx0 = 7.4909;  // RF left
+  //bety0 = 6.9346;
+  //alfx0 = -5.3052e-01;
+  //alfy0 = -3.8328e-01;
 
   select, flag = twiss, column = name, s, betx, bety, alfx, alfy,mux,muy dx, dpx;
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
 
   match, sequence = PRAE_prorad, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
   constraint, sequence = PRAE_prorad, range = #s/#e, betx < 100, bety < 100;
-  constraint, sequence = PRAE_prorad, range = #e, betx =5, bety = 5, dx=0, dpx=0;
+  constraint, sequence = PRAE_prorad, range = #e, betx =1, bety = 1, dx=0, dpx=0;
+  //constraint, sequence = PRAE_prorad, range = #e, betx =0.001, bety = 0.8, dx=0, dpx=0,alfx<0.05,alfy<0.05;
 
   vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -85,6 +94,8 @@ if ( 1 == flag) {
   value, Q_triplet_4th_2->k1;
   value, Q_triplet_4th_3->k1;
   select, flag = twiss, clear = true;
+  //twiss, save, file = "twiss_prae_prorad.tfs", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+  twiss, save, file = "twiss_prae_prorad.tfs", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full; 
   //select, flag = twiss, column = s, name, RE56;
@@ -157,10 +168,17 @@ if ( 1 == flag) {
   twiss, betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx=dx0, dpx=dpx0;
 
   match, sequence = PRAE_radiobiology, betx = betx0, bety = bety0, alfy = alfy0, alfx = alfx0;
-  constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 40, bety < 40;
-  //constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx = 0, dpx = 0;
-  constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.1, dx = 0, dpx = 0, alfx =0, alfy = 0;
+  //constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 40, bety < 40;
+  // Mini Beam
+  // constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.3, dx = 0, dpx = 0, alfx =0, alfy = 0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =1.05, bety = 1.05, dx = 0, dpx = 0, alfx =0, alfy = 0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =0.08, bety = 0.08, dx = 0, dpx = 0, alfx =0, alfy = 0;
+  
+  // FLASH beam
+  constraint, sequence = PRAE_radiobiology, range = #e, betx =234, bety = 225, dx = 0, dpx = 0,alfx =0, alfy = 0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =234, bety = 1, dx = 0, dpx = 0,alfx =0, alfy = 0;
   //constraint, sequence = PRAE_radiobiology, range = #e, dx=0, dpx=0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =1000, bety = 1000, dx = 0, dpx = 0, alfx =0, alfy = 0;
 
   vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -168,16 +186,17 @@ if ( 1 == flag) {
   vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = D_triplet_3rd_To_target->l, step = 1e-3, lower = 0.1, upper = 5.0;
 
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;
+  value, Q_doublet_1st_1->k1;
+  value, Q_doublet_1st_2->k1;
   value, Q_triplet_2nd_1->k1;
   value, Q_triplet_3rd_1->k1;
   value, Q_triplet_3rd_2->k1;
   value, Q_triplet_3rd_3->k1;
   select, flag = twiss, clear = true;
-  //twiss, save, file = "twiss_prae_radiobiology.tfs", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
+  twiss, save, file = "twiss_prae_radiobiology.tfs", betx = betx0, bety = bety0, alfx = alfx0, alfy = alfy0, dx = dx0, dpx = dpx0;
   //select, flag = twiss, column = name,s, betx, bety, alfx, alfy, mux, muy, dx, dpx;
   select, flag = twiss,full;
   twiss, save, file = "twiss_prae_radiobiology_madx.dat",

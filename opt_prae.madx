@@ -1,14 +1,16 @@
 charge := 2.0e-9; // 2nC
-e0 := 0.070; // GeV
+//e0 := 0.070; // GeV
 //e0 := 7.0143e-2; // GeV, 0.5sigma for prorad
-//e0 := 7.0298e-2; // GeV, max E for prorad
+e0 := 7.0298e-2; // GeV, max E for prorad, on crest
+//e0 := 6.9132e-2; // GeV, mean E for prorad, on right
+//e0 := 6.9158e-2; // GeV, mean E for prorad, on left
 emit_xy := 0.05e-6; // m.rad
 sigma_z := 3.0e-3; // m
-e_spread := 2.0e-3;
-N_electron := 1e3; 
 
-//sigma_z := 1.07e-3; // m
-//e_spread := 2.84e-3;
+//e_spread := 2.0e-3;
+//N_electron := 1e3; 
+sigma_z := 1.07e-3; // m, on crest
+e_spread := 2.84e-3;
 
 D_linac_To_doublet : drift, l = 1; // m
 
@@ -61,7 +63,9 @@ Q_triplet_4th_1 : quadrupole, l = l_quad, k1 = 8.90692;
 Q_triplet_4th_2 : quadrupole, l = l_quad, k1 = -9.84361;
 Q_triplet_4th_3 : quadrupole, l = l_quad, k1 = 6.13299;
 
-S_kicker : sbend, l = 0.2, angle = 14.0*RADDEG;;
+//S_kicker : sbend, l = 0.2, angle = 14.0*RADDEG;;
+S_kicker : sbend, l = 0.2, angle = 14.0*RADDEG,e1=0, e2 = 14*RADDEG;
+S_kicker_2 : sbend, l = 0.2, angle = 14.0*RADDEG,e1=14*RADDEG, e2 = 0;
 D_kicker : drift, l = 0.2;
 
 angle_chicane = PI/6.0;
@@ -83,22 +87,30 @@ Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
-angle_chicane = 55 * RADDEG;
+angle_chicane = 45 * RADDEG;
 l_chicane = 1.2;
 
 D_chicane_1->l = 2.0;
 D_chicane_3->l = 2.0;
 
-q_doublet_1st_1->k1 = 2.70050;
-q_doublet_1st_2->k1 = -3.16456;
-q_triplet_2nd_1->k1 = 5.45269;
+q_doublet_1st_1->k1 = 2.70050*2;
+q_doublet_1st_2->k1 = -3.16456*2;
+q_triplet_2nd_1->k1 = 5.45269*2;
+
+//q_doublet_1st_1->k1 =      4.06676; 
+//q_doublet_1st_2->k1 =     -3.99113 ;
+//q_triplet_2nd_1->k1 =      5.45269;
 
 //length_tri = 3.7
 //D_kicker_To_triplet_2nd->l = length_tri;
 //D_triplet_2nd_To_kicker->l = length_tri;
-//D_triplet_3rd_To_target->l = 2.5;
+//D_triplet_3rd_To_target->l = 2.0;
+
+// FOR FLASH BEAM
+D_triplet_3rd_To_target->l = 2.0;
+
+//D_kicker_To_triplet_3rd->l = 1.0;
 
 //length_tri = 0.2;
-
 //D_triplet_3rd_1->l = length_tri;
 //D_triplet_3rd_1->l = length_tri;

@@ -1,4 +1,4 @@
-set e0 0.0691
+set e0 0.070298
 set e_initial $e0
 
 set START "START"
@@ -8,10 +8,10 @@ set sbend_synrad 1
 set quad_synrad 0
 set mult_synrad 0
 
-set match(beta_x) 10.777
-set match(beta_y) 10.156
-set match(alpha_x) -2.0979
-set match(alpha_y) -1.8762
+set match(beta_x) 8.7976
+set match(beta_y) 8.3025
+set match(alpha_x) -0.99591
+set match(alpha_y) -0.84441
 
 SetReferenceEnergy $e0
 Girder
@@ -19,11 +19,11 @@ Drift -name "PRAE_PRORAD$START" -length 0
 Girder
 Drift -name "D_LINAC_TO_DOUBLET" -length 1 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.6253911782*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.7426660779*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_1ST_1" -length 0.5 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.7090878049*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.9952785148*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_TO_DOGLEG" -length 2 
 Girder
@@ -58,16 +58,16 @@ SetReferenceEnergy $e0
 Girder
 Drift -name "D_CHICANE_TO_TRIPLET_4TH" -length 1 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.179140006*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.9767302106*$e0] -e0 $e0 
 Girder
 Drift -name "D_TRIPLET_4TH_1" -length 0.2 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_2" -synrad $quad_synrad -length 0.2 -strength [expr -1.251793976*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_2" -synrad $quad_synrad -length 0.2 -strength [expr -1.862100552*$e0] -e0 $e0 
 Girder
 Drift -name "D_TRIPLET_4TH_2" -length 0.2 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_3" -synrad $quad_synrad -length 0.2 -strength [expr -0.2676748123*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_3" -synrad $quad_synrad -length 0.2 -strength [expr 0.7395406339*$e0] -e0 $e0 
 Girder
-Drift -name "D_TRIPLET_4TH_TO_TARGET" -length 2 
+Drift -name "D_TRIPLET_4TH_TO_TARGET" -length 4 
 Girder
 Drift -name "PRAE_PRORAD$END" -length 0 
