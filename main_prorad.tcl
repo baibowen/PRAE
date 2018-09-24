@@ -38,12 +38,12 @@ Octave {
   #disp(["The sum of mask is " num2str(sum(mask))]);
   placet_set_beam("beam1", B0);
   [E,B] = placet_test_no_correction("prae", "beam1", "None",1,0,0);
-  save -text beam_prae_0.dat B;
+  save -text beam_prae_prorad_0.dat B;
 
 
   [E,B] = placet_test_no_correction("prae", "beam1", "None");
-  save -text emit_prae.dat E;
-  save -text beam_prae.dat B;
+  save -text emit_prae_prorad.dat E;
+  save -text beam_prae_prorad.dat B;
 
   #B_1 = B(mask,:);
   #

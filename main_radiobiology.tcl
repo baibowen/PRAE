@@ -32,6 +32,7 @@ Octave {
 
   B00 = placet_get_beam("beam1");
   B0 = load('./output_linac_placet.dat');
+  B0(:,4) -= mean(B0(:,4));
   #mask = abs(B0(:,1) - mean(B0(:,1))) < 0.5*std(B0(:,1));
   #B0(~mask,1) = mean(B0(:,1));
   #disp(["The sum of mask is " num2str(sum(mask))]);

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-flag=3
+flag=1
 
 madx < prae.madx > madx_run.log 
+
+grep "Final Penalty Function" madx_run.log
 
 if [ $flag -eq 1 ]; then
   line="prorad"
@@ -20,6 +22,7 @@ if [ $flag -eq 1 ]; then
   gsed -i "/M_COLLIMATOR/a\source collimator.tcl" lattice_prae_${line}_placet.tcl
 fi
 
+
 placet -s main_${line}.tcl
 
 #
@@ -30,3 +33,5 @@ placet -s main_${line}.tcl
 #root -q "read_survey.C(\"${line}\")"
 
 #gnuplot plot_survey.gnu
+
+cp twiss_prae_${line}.tfs ../BDSIM/ 
