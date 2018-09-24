@@ -4,6 +4,8 @@ flag=3
 
 madx < prae.madx > madx_run.log 
 
+grep "Final Penalty Function" madx_run.log
+
 if [ $flag -eq 1 ]; then
   line="prorad"
 elif [ $flag -eq 2 ]; then
@@ -21,6 +23,8 @@ if [ $flag -eq 1 ]; then
 fi
 
 placet -s main_${line}.tcl
+
+root -q "read_survey.C"
 
 #
 #if [ $flag -eq 1 ]; then

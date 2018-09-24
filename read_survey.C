@@ -2,7 +2,10 @@
 #include <fstream>
 #include <string>
 
-void read_survey(string beamline){
+//void read_survey(string beamline){
+void read_survey(){
+  //string beamline("prorad");
+  string beamline("radiobiology");
 
   ifstream input("survey_" + beamline + "_madx.dat");
   ofstream output("survey_" + beamline + "_gnuplot.dat");
@@ -20,5 +23,7 @@ void read_survey(string beamline){
 
   output.close();
   input.close();
+
+  system("./plot_survey.gnu");
 
 }

@@ -171,11 +171,11 @@ if ( 1 == flag) {
   //constraint, sequence = PRAE_radiobiology, range = #s/#e, betx < 40, bety < 40;
   // Mini Beam
   // constraint, sequence = PRAE_radiobiology, range = #e, betx =6.7, bety = 6.3, dx = 0, dpx = 0, alfx =0, alfy = 0;
-  //constraint, sequence = PRAE_radiobiology, range = #e, betx =1.05, bety = 1.05, dx = 0, dpx = 0, alfx =0, alfy = 0;
+  constraint, sequence = PRAE_radiobiology, range = #e, betx =1.05, bety = 1.05, dx = 0, dpx = 0, alfx =0, alfy = 0;
   //constraint, sequence = PRAE_radiobiology, range = #e, betx =0.08, bety = 0.08, dx = 0, dpx = 0, alfx =0, alfy = 0;
   
   // FLASH beam
-  constraint, sequence = PRAE_radiobiology, range = #e, betx =234, bety = 225, dx = 0, dpx = 0,alfx =0, alfy = 0;
+  //constraint, sequence = PRAE_radiobiology, range = #e, betx =234, bety = 225, dx = 0, dpx = 0,alfx =0, alfy = 0;
   //constraint, sequence = PRAE_radiobiology, range = #e, betx =234, bety = 1, dx = 0, dpx = 0,alfx =0, alfy = 0;
   //constraint, sequence = PRAE_radiobiology, range = #e, dx=0, dpx=0;
   //constraint, sequence = PRAE_radiobiology, range = #e, betx =1000, bety = 1000, dx = 0, dpx = 0, alfx =0, alfy = 0;

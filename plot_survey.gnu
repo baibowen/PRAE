@@ -36,7 +36,7 @@ set label 'Box' at 28.3,13.05 right font "Droid, 15"
 ###################################################
 #### Draw the beamline
 shift_linac = 6;
-shift_vertical = 3.5;
+shift_vertical = 1.5;
 
 set xlabel "x, m"
 set ylabel "y, m"
@@ -48,3 +48,7 @@ set key font "Droid, 15"
 plot 'survey_prorad_gnuplot.dat' u (shift_linac+$4):(1*$2 + shift_vertical) w l title "survey" lw 4, 'survey_radiobiology_gnuplot.dat' u (shift_linac+$4):(-1*$2 + shift_vertical) w l title "survey" lw 4
 
 replot
+
+
+system("epstopdf SURVEY.eps")
+system("open SURVEY.pdf")
