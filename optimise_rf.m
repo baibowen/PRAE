@@ -37,4 +37,16 @@ disp(["The beamsize before the collimator is " num2str(std(B0(:,2)))]);
 
 disp(["The number of paritcles after collimater is " num2str(sum(mask_colli))]);
 
+disp(["The x beam size is " num2str(std(C(:,2))) " um"]);
+disp(["The y beam size is " num2str(std(C(:,3))) " um"]);
+disp(["The x divergence is " num2str(std(C(:,5))) " urad"]);
+disp(["The y divergence is " num2str(std(C(:,6))) " urad"]);
+
+disp("********************************** Below is with RF");
+
+[R, fval] = fminsearch("optimise_espread",X)
+
+disp(["The optimsed energy spread is " num2str(fval)]);
+
+
 system(['echo 10 ' num2str(R_56) ' 1 ' num2str(fval*1.0e4) ' ' num2str(sum(mask_colli)/1.0e2) ' >> result.txt']);

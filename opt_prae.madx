@@ -33,8 +33,8 @@ D_triplet_3rd_To_target : drift, l = 2.5; // m
 
 D_kicker_To_chicane : drift, l = 0.2 + l_shift; //m 
 
-angle_chicane = -45 * RADDEG;  // degree
-l_space = 1; // meter
+angle_chicane = -30 * RADDEG;  // degree
+l_space = 1.5; // meter
 
 D_chicane_1 : drift, l = l_space/cos(angle_chicane); // m
 D_chicane_2 : drift, l = 1.5; // m
@@ -74,10 +74,10 @@ D_kicker : drift, l = 0.2;
 
 l_chicane = 1.2;
 
-//S_chicane_1 : rbend, l = 1.2, angle = 0.52359877;
-//S_chicane_2 : rbend, l = 1.2, angle = -0.52359877;
-//S_chicane_3 : rbend, l = 1.2, angle = -0.52359877;
-//S_chicane_4 : rbend, l = 1.2, angle = 0.52359877;
+//S_chicane_1 : rbend, l = 1.2, angle = angle_chicane;
+//S_chicane_2 : rbend, l = 1.2, angle = -angle_chicane;
+//S_chicane_3 : rbend, l = 1.2, angle = -angle_chicane;
+//S_chicane_4 : rbend, l = 1.2, angle = angle_chicane;
 S_chicane_1 : sbend, l := l_chicane, angle :=  angle_chicane, e1 = 0, e2 := angle_chicane;
 S_chicane_2 : sbend, l := l_chicane, angle := -angle_chicane, e1 := -angle_chicane, e2 = 0;;
 S_chicane_3 : sbend, l := l_chicane, angle := -angle_chicane, e1 = 0, e2 := -angle_chicane;
@@ -89,9 +89,6 @@ M_collimator : marker;
 Q_triplet_2nd_1->k1 =        11.47365367 ;
 Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
-
-D_chicane_1->l = 2.0;
-D_chicane_3->l = 2.0;
 
 q_doublet_1st_1->k1 = 2.70050*2;
 q_doublet_1st_2->k1 = -3.16456*2;

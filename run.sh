@@ -1,6 +1,6 @@
 #!/bin/bash
 
-flag=3
+flag=1
 
 madx < prae.madx > madx_run.log 
 

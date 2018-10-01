@@ -3,7 +3,7 @@ title "PARE";
 option, warn, -info;
 
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - RadioBiology 
-flag = 3;  
+flag = 1;  
 
 call file = "opt_prae.madx";
 
