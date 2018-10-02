@@ -22,6 +22,8 @@ BeamlineNew
 source lattice_prae_prorad_placet.tcl 
 BeamlineSet -name prae
 
+source $scriptdir/setCSR.m
+
 FirstOrder 1
 
 make_particle_beam beam1 beamparams particles.in zero_wake.dat

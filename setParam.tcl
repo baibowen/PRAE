@@ -16,6 +16,8 @@ set beamparams(usewakefields) 1
 set flag 1
 set bpmres 1
 
+set charge 1.0e-9
+
 #Octave {
 #        randn("seed", 876 * 1e4);
 #}
