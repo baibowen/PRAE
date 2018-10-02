@@ -16,6 +16,10 @@ D_linac_To_doublet : drift, l = 1; // m
 
 D_doublet_1st_1 : drift, l = 0.5; // m
 
+D_doublet_To_doublet: drift, l = 5; //m
+
+D_doublet_2nd_1 : drift, l = 0.5; // m
+
 l_shift = 4.5; // m
 D_doublet_To_dogleg : drift, l = 5.0 - l_shift; // m  KICKER NOT INCLUDED
 
@@ -53,6 +57,8 @@ Q_doublet_1st_1 : quadrupole, l = l_quad, k1 = -0.0482006;
 Q_doublet_1st_2 : quadrupole, l = l_quad, k1 = 9.8658;
 Q_doublet_1st_3 : quadrupole, l = l_quad, k1 = -9.71165;
 
+Q_doublet_2nd_1 : quadrupole, l = l_quad, k1 = -1;
+Q_doublet_2nd_2 : quadrupole, l = l_quad, k1 = 1;
 
 Q_triplet_2nd_1 : quadrupole, l = l_quad, k1 = 6.80024;
 Q_triplet_2nd_2 : quadrupole, l = l_quad, k1 = 17.6585;
@@ -107,3 +113,12 @@ q_triplet_2nd_1->k1 = 5.45269*2;
 D_triplet_3rd_To_target->l = 3.0;
 
 //D_kicker_To_triplet_3rd->l = 1.0;
+
+
+q_doublet_1st_1->k1 =        6.022735274 ;
+q_doublet_1st_2->k1 =       -4.263855178 ;
+q_triplet_2nd_1->k1 =         5.46158423 ;
+q_triplet_3rd_1->k1 =         10.9653759 ;
+q_triplet_3rd_2->k1 =       -12.04185391 ;
+q_triplet_3rd_3->k1 =        5.635481344 ;
+

@@ -19,11 +19,19 @@ Drift -name "PRAE_RADIOBIOLOGY$START" -length 0
 Girder
 Drift -name "D_LINAC_TO_DOUBLET" -length 1 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.204547055*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.6526005099*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_1ST_1" -length 0.5 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.8527710355*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.8172614863*$e0] -e0 $e0 
+Girder
+Drift -name "D_DOUBLET_TO_DOUBLET" -length 5 
+Girder
+Quadrupole -name "Q_DOUBLET_2ND_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.210505313*$e0] -e0 $e0 
+Girder
+Drift -name "D_DOUBLET_2ND_1" -length 0.5 
+Girder
+Quadrupole -name "Q_DOUBLET_2ND_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.9531858099*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_TO_DOGLEG" -length 0.5 
 Girder

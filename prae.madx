@@ -3,13 +3,15 @@ title "PARE";
 option, warn, -info;
 
 // 1 - ProRad; 2 - Instrumentation; 3 (other) - RadioBiology 
-flag = 1;  
+flag = 3;  
 
 call file = "opt_prae.madx";
 
 PRAE_prorad: line = (
 D_linac_to_doublet,
 Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_To_doublet,
+Q_doublet_2nd_1, D_doublet_2nd_1, Q_doublet_2nd_2, // first doublet
 D_doublet_to_dogleg,
 D_kicker,
 D_kicker_To_chicane,
@@ -23,6 +25,8 @@ D_triplet_4th_To_target
 PRAE_instrument: line = (
 D_linac_to_doublet,
 Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_To_doublet,
+Q_doublet_2nd_1, D_doublet_2nd_1, Q_doublet_2nd_2, // first doublet
 D_doublet_to_dogleg,
 S_kicker,
 D_kicker_To_triplet_2nd,
@@ -37,6 +41,8 @@ D_triplet_3rd_To_target
 PRAE_radiobiology: line = (
 D_linac_to_doublet,
 Q_doublet_1st_1, D_doublet_1st_1, Q_doublet_1st_2, // first doublet
+D_doublet_To_doublet,
+Q_doublet_2nd_1, D_doublet_2nd_1, Q_doublet_2nd_2, // first doublet
 D_doublet_to_dogleg,
 S_kicker,
 D_kicker_To_triplet_2nd,
@@ -81,6 +87,8 @@ if ( 1 == flag) {
 
   vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_triplet_4th_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
@@ -182,10 +190,12 @@ if ( 1 == flag) {
 
   vary, name = Q_doublet_1st_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
   vary, name = Q_doublet_1st_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
-  vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  vary, name = Q_doublet_2nd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_2nd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_3rd_1->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_3rd_2->k1, step = 1e-8, lower = -18.0, upper = 18.0;
+  //vary, name = Q_triplet_3rd_3->k1, step = 1e-8, lower = -18.0, upper = 18.0;
 
   lmdif, calls = 100000, tolerance = 1e-26;
   endmatch;
