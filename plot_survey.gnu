@@ -35,7 +35,7 @@ set label 'Box' at 28.3,13.05 right font "Droid, 15"
 
 ###################################################
 #### Draw the beamline
-shift_linac = 6;
+shift_linac = -5;
 shift_vertical = 1.5;
 
 set xlabel "x, m"

@@ -31,20 +31,23 @@ TwissPlot -beam "beam1" -file twiss_placet.dat
 Octave {
   B00 = placet_get_beam("beam1");
   #B0 = load('./output_linac_placet.dat');
-  B0 = load('./output_linac_placet.dat.left');
+  #B0 = load('./output_linac_placet.dat.left');
+  B0 = load('./output_linac_placet.dat.right');
+  #B0 = load('./output_linac_placet.dat.crest');
   B0(:,4) -= mean(B0(:,4));
   #mask = abs(B0(:,1) - mean(B0(:,1))) < 0.5*std(B0(:,1));
   #mean(B0(mask,1))
   #B0(~mask,1) = mean(B0(:,1));
   #disp(["The sum of mask is " num2str(sum(mask))]);
   placet_set_beam("beam1", B0);
-  [E,B] = placet_test_no_correction("prae", "beam1", "None",1,0,0);
-  save -text beam_prae_0.dat B;
+  #[E,B] = placet_test_no_correction("prae", "beam1", "None",1,0,0);
+  #save -text beam_prae_0.dat B;
 
 
-  [E,B] = placet_test_no_correction("prae", "beam1", "None");
-  save -text emit_prae.dat E;
-  save -text beam_prae.dat B;
+  #[E,B] = placet_test_no_correction("prae", "beam1", "None");
+  #save -text emit_prae.dat E;
+  #save -text beam_prae.dat B;
+
 
   #B_1 = B(mask,:);
   #
@@ -62,3 +65,5 @@ Octave {
   #emit_nx = emit_x * gamma
   #emit_ny = emit_y * gamma
 }
+
+source saveBeam.tcl

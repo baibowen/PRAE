@@ -19,19 +19,19 @@ Drift -name "PRAE_PRORAD$START" -length 0
 Girder
 Drift -name "D_LINAC_TO_DOUBLET" -length 1 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.9742723512*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.090662784*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_1ST_1" -length 0.5 
 Girder
-Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -1.200895821*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_1ST_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.8868183801*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_TO_DOUBLET" -length 5 
 Girder
-Quadrupole -name "Q_DOUBLET_2ND_1" -synrad $quad_synrad -length 0.2 -strength [expr -0.7704236538*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_2ND_1" -synrad $quad_synrad -length 0.2 -strength [expr 0.4341576288*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_2ND_1" -length 0.5 
 Girder
-Quadrupole -name "Q_DOUBLET_2ND_2" -synrad $quad_synrad -length 0.2 -strength [expr 0.682432794*$e0] -e0 $e0 
+Quadrupole -name "Q_DOUBLET_2ND_2" -synrad $quad_synrad -length 0.2 -strength [expr -0.1514424723*$e0] -e0 $e0 
 Girder
 Drift -name "D_DOUBLET_TO_DOGLEG" -length 0.5 
 Girder
@@ -66,15 +66,15 @@ SetReferenceEnergy $e0
 Girder
 Drift -name "D_CHICANE_TO_TRIPLET_4TH" -length 1 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.181522675*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_1" -synrad $quad_synrad -length 0.2 -strength [expr 1.065507478*$e0] -e0 $e0 
 Girder
 Drift -name "D_TRIPLET_4TH_1" -length 0.2 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_2" -synrad $quad_synrad -length 0.2 -strength [expr -1.631527654*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_2" -synrad $quad_synrad -length 0.2 -strength [expr -1.581845884*$e0] -e0 $e0 
 Girder
 Drift -name "D_TRIPLET_4TH_2" -length 0.2 
 Girder
-Quadrupole -name "Q_TRIPLET_4TH_3" -synrad $quad_synrad -length 0.2 -strength [expr 0.717352818*$e0] -e0 $e0 
+Quadrupole -name "Q_TRIPLET_4TH_3" -synrad $quad_synrad -length 0.2 -strength [expr 0.6208382187*$e0] -e0 $e0 
 Girder
 Drift -name "D_TRIPLET_4TH_TO_TARGET" -length 2 
 Girder

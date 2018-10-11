@@ -4,8 +4,8 @@
 
 //void read_survey(string beamline){
 void read_survey(){
-  string beamline("prorad");
-  //string beamline("radiobiology");
+  //string beamline("prorad");
+  string beamline("radiobiology");
 
   ifstream input("survey_" + beamline + "_madx.dat");
   ofstream output("survey_" + beamline + "_gnuplot.dat");

@@ -31,7 +31,7 @@ TwissPlot -beam "beam1" -file twiss_prae_radiobiology_placet.dat
 Octave {
 
   B00 = placet_get_beam("beam1");
-  B0 = load('./output_linac_placet.dat');
+  B0 = load('./output_linac_placet.dat.crest');
   #mask = abs(B0(:,1) - mean(B0(:,1))) < 0.5*std(B0(:,1));
   #B0(~mask,1) = mean(B0(:,1));
   #disp(["The sum of mask is " num2str(sum(mask))]);
@@ -51,29 +51,32 @@ Octave {
   #[E,B] = placet_test_no_correction("prae", "beam1", "None",1,0,END);
   #save -text beam_prae_radiobiology_1.dat B;
 
-  [E,B] = placet_test_no_correction("prae", "beam1", "None");
-  save -text emit_prae_radiobiology.dat E;
-  save -text beam_prae_radiobiology.dat B;
+  #[E,B] = placet_test_no_correction("prae", "beam1", "None");
+  #save -text emit_prae_radiobiology.dat E;
+  #save -text beam_prae_radiobiology.dat B;
 
-  disp(["The x beam size is " num2str(std(B)(:,2)) " um"]);
-  disp(["The y beam size is " num2str(std(B)(:,3)) " um"]);
-  disp(["The xp is " num2str(std(B)(:,5)) " urad"]);
-  disp(["The yp is " num2str(std(B)(:,6)) " urad"]);
-  disp(["The energy spread is " num2str(std(B)(:,1)/mean(B(:,1)))]);
+  #disp(["The x beam size is " num2str(std(B)(:,2)) " um"]);
+  #disp(["The y beam size is " num2str(std(B)(:,3)) " um"]);
+  #disp(["The xp is " num2str(std(B)(:,5)) " urad"]);
+  #disp(["The yp is " num2str(std(B)(:,6)) " urad"]);
+  #disp(["The energy spread is " num2str(std(B)(:,1)/mean(B(:,1)))]);
 
-  beta_f_x = 6.7; ## meter
-  beta_f_y = 6.1; ## meter
-  emit_x = 0.1*E(end,2); ## um
-  emit_y = 0.1*E(end,6); ## um
-  gamma_rel = mean(B(:,1))/0.511e-3;
+  #beta_f_x = 6.7; ## meter
+  #beta_f_y = 6.1; ## meter
+  #emit_x = 0.1*E(end,2); ## um
+  #emit_y = 0.1*E(end,6); ## um
+  #gamma_rel = mean(B(:,1))/0.511e-3;
 
-  disp(["The expected x beam size is " num2str(sqrt(emit_x*beta_f_x*1e6/gamma_rel)) " um"]);
-  disp(["The expected y beam size is " num2str(sqrt(emit_y*beta_f_y*1e6/gamma_rel)) " um"]);
+  #disp(["The expected x beam size is " num2str(sqrt(emit_x*beta_f_x*1e6/gamma_rel)) " um"]);
+  #disp(["The expected y beam size is " num2str(sqrt(emit_y*beta_f_y*1e6/gamma_rel)) " um"]);
 }
 
 
-Octave {
-  
-  source misalign.m
-  
-  }
+#Octave {
+#  
+#  source misalign.m
+#  
+#  }
+
+
+  source saveBeam.tcl
