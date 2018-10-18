@@ -76,7 +76,7 @@ Q_triplet_2nd_2->k1 =       -8.594261025 ;
 Q_triplet_2nd_3->k1 =        14.65830932 ;
 
 
-S_chicane_1->angle = 0.75 
+S_chicane_1->angle = 0.75;
 S_chicane_2->angle = -0.75;
 S_chicane_3->angle = -0.75;
 S_chicane_4->angle = 0.75;
